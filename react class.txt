@@ -1,0 +1,40 @@
+import React, { useState } from 'react';
+
+export default function ClickCounter() {
+  // State to track the number of clicks
+  const [count, setCount] = useState(0);
+
+  // 1. Standard Event Handler Function
+  const handleIncrement = (event) => {
+    // You can access the event object if needed
+    console.log("Event type:", event.type); 
+    setCount(count + 1);
+  };
+
+  // 2. Parameterized Event Handler Function
+  const handleResetWithAlert = (message) => {
+    alert(message);
+    setCount(0);
+  };
+
+  return (
+    <div style={{ padding: '20px', textAlign: 'center' }}>
+      <h2>Click Counter: {count}</h2>
+
+      {/* Method 1: Passing the function reference directly */}
+      <button onClick={handleIncrement} style={{ marginRight: '10px' }}>
+        Increment Counter
+      </button>
+
+      {/* Method 2: Inline arrow function (for simple state changes) */}
+      <button onClick={() => setCount(count - 1)} style={{ marginRight: '10px' }}>
+        Decrement Counter
+      </button>
+
+      {/* Method 3: Arrow function wrapper to pass custom parameters */}
+      <button onClick={() => handleResetWithAlert('The counter will reset to 0!')}>
+        Reset Counter
+      </button>
+    </div>
+  );
+}
